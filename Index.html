@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -227,4 +228,235 @@
 
   <script src="script.js"></script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Forecast System</title>
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="app-bar">
+        <h1>ACCRA WEATHER FORECAST</h1>
+        <div class="app-controls">
+          <button id="settings-toggle" class="hamburger" aria-label="Open settings">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="app-buttons">
+            <button id="home-btn" class="app-button" aria-label="Home"><i class="fas fa-home"></i></button>
+            <button id="header-search-btn" class="app-button" aria-label="Search"><i class="fas fa-search"></i></button>
+            <button id="notification-btn" class="app-button" aria-label="Notifications"><i class="fas fa-bell"></i></button>
+            <button id="dark-mode-toggle" class="app-button" aria-label="Enable dark mode"><i class="fas fa-moon"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="city-input" placeholder="Accra" readonly />
+        <button id="search-btn" aria-label="Search weather" disabled>
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+      <p class="hint">This app is focused on Accra, Ghana. Use the sub-city section below for district-specific forecasts.</p>
+    </header>
+
+    <section class="settings-panel hidden" id="settings-panel">
+      <div class="settings-header">
+        <h2>App Settings</h2>
+        <button id="settings-close" aria-label="Close settings"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="settings-group">
+        <h3>Theme</h3>
+        <div class="settings-actions">
+          <button class="settings-btn" data-theme="light">Light</button>
+          <button class="settings-btn" data-theme="dark">Dark</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <h3>Style</h3>
+        <div class="settings-actions">
+          <button class="settings-btn" data-style="default">Default</button>
+          <button class="settings-btn" data-style="modern">Modern</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <h3>Sky Theme</h3>
+        <div class="settings-actions">
+          <button class="sky-btn" data-sky="daytime-sky">☀️ Daytime</button>
+          <button class="sky-btn" data-sky="sunset-sky">🌅 Sunset</button>
+          <button class="sky-btn" data-sky="twilight-sky">🌆 Twilight</button>
+          <button class="sky-btn" data-sky="starry-night-sky">⭐ Starry Night</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <h3>Font</h3>
+        <div class="settings-actions">
+          <button class="settings-btn" data-font="system">System</button>
+          <button class="settings-btn" data-font="serif">Serif</button>
+          <button class="settings-btn" data-font="mono">Mono</button>
+        </div>
+      </div>
+      <div class="settings-group auth-group">
+        <h3>Account</h3>
+        <div class="settings-actions">
+          <button id="sign-in-btn" class="settings-btn">Sign In</button>
+          <button id="sign-out-btn" class="settings-btn" disabled>Sign Out</button>
+        </div>
+        <p id="auth-status" class="settings-status">Signed out</p>
+      </div>
+    </section>
+
+    <section class="weather-card hidden" id="weather-card">
+      <div class="current-weather">
+        <div class="location">
+          <h2 id="city-name">City</h2>
+          <p id="date"></p>
+          <p id="description"></p>
+        </div>
+        <div class="temperature">
+          <img id="weather-icon" src="" alt="Weather icon" />
+          <div id="temperature">--</div>
+        </div>
+      </div>
+
+      <div class="details">
+        <div class="detail-item"><i class="fas fa-temperature-high"></i><span id="feels-like"></span></div>
+        <div class="detail-item"><i class="fas fa-tint"></i><span id="humidity"></span></div>
+        <div class="detail-item"><i class="fas fa-wind"></i><span id="wind"></span></div>
+      </div>
+
+      <!-- Advanced Meteorological Features Section -->
+      <div class="advanced-features">
+        <h3>Advanced Meteorological Features</h3>
+        
+        <!-- Meteorology Features -->
+        <div class="feature-category">
+          <h4><i class="fas fa-cloud"></i> Meteorology</h4>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-label">Relative Humidity</span>
+              <span class="feature-value" id="rel-humidity">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Barometric Pressure</span>
+              <span class="feature-value" id="pressure">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Wind Speed</span>
+              <span class="feature-value" id="wind-speed">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Wind Direction</span>
+              <span class="feature-value" id="wind-direction">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Precipitation Accumulation</span>
+              <span class="feature-value" id="precipitation">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Visibility</span>
+              <span class="feature-value" id="visibility">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Atmospheric Features -->
+        <div class="feature-category">
+          <h4><i class="fas fa-wave-square"></i> Atmospheric Features</h4>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-label">Dew Point Temperature</span>
+              <span class="feature-value" id="dew-point">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Geopotential Height</span>
+              <span class="feature-value" id="geopotential-height">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Total Precipitable Water</span>
+              <span class="feature-value" id="precipitable-water">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Cloud Cover</span>
+              <span class="feature-value" id="cloud-cover">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Energy & Physics Features -->
+        <div class="feature-category">
+          <h4><i class="fas fa-bolt"></i> Energy & Physics</h4>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-label">Solar Radiation</span>
+              <span class="feature-value" id="solar-radiation">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">CAPE (Convective Available Potential Energy)</span>
+              <span class="feature-value" id="cape">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Sea Surface Temperature</span>
+              <span class="feature-value" id="sea-surface-temp">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">UV Index</span>
+              <span class="feature-value" id="uv-index">--</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Time & Space Features -->
+        <div class="feature-category">
+          <h4><i class="fas fa-map"></i> Time & Space Features</h4>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-label">Local Time (Cyclical)</span>
+              <span class="feature-value" id="local-time">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Sunrise / Sunset</span>
+              <span class="feature-value" id="sunrise-sunset">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Topography (Altitude)</span>
+              <span class="feature-value" id="topography">--</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-label">Time Zone</span>
+              <span class="feature-value" id="timezone">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="forecast">
+        <h3>5-Day Forecast</h3>
+        <div id="forecast-container" class="forecast-grid"></div>
+      </div>
+    </section>
+
+    <section class="subcity-card" id="subcity-card">
+      <h3>Accra Sub-City Forecast</h3>
+      <div class="subcity-controls">
+        <select id="subcity-select" aria-label="Select Accra district" disabled>
+          <option value="">Select an Accra district</option>
+        </select>
+        <button id="subcity-refresh-btn" disabled>Refresh</button>
+      </div>
+      <div id="subcity-forecast" class="forecast-grid"></div>
+      <p id="subcity-message" class="subcity-message">Sub-city forecast data will appear here when you add district data.</p>
+    </section>
+
+    <div id="error-message" class="hidden"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+>>>>>>> 721b5b7 (updates)
 </html>
