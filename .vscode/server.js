@@ -48,6 +48,15 @@ const PORT = 8000;
 const HOSTNAME = 'localhost';
 
 const server = http.createServer((req, res) => {
+  if (req.url === '/config.json') {
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache'
+    });
+    res.end('{}');
+    return;
+  }
+
   let filePath = path.join(__dirname, req.url === '/' ? 'Index.html' : req.url);
   const extname = path.extname(filePath);
   
